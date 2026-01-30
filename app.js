@@ -3,16 +3,14 @@ import {
     renderCandidateCards,
     filterCandidatesByProfession,
     filterCandidatesByAvailability,
-    exampleSession
-} from './matchflow.js';
-import {
-    renderJobOfferCards as renderJobOfferCardsFromShow,
-    setupCandidateCardEvents as setupShowEvents
+    exampleSession,
+    renderJobOfferCards,
+    setupCandidateCardEvents
 } from './showOferts.js';
 
 // Global state
 let db = null;
-let currentView = 'candidates'; // 'candidates' or 'offers'
+let currentView = 'offers'; // 'candidates', 'offers', or 'matches'
 let currentFilter = 'all';
 let showOnlyAvailable = false;
 let currentSession = exampleSession;
@@ -22,7 +20,8 @@ async function init() {
     try {
         db = await loadDatabase('./db.json');
         // Use event handlers from showOferts (handles both candidates and offers actions)
-        setupShowEvents(db, currentSession);
+        setupCandidateCardEvents(db, currentSession);
+        setupNavigationEvents();
         updateUI();
         populateProfessionFilter();
         updateStats();
@@ -36,28 +35,37 @@ async function init() {
 // Update UI
 function updateUI() {
     const grid = document.getElementById('cards-grid');
-    
+
     if (currentView === 'candidates') {
         let candidates = db.candidates;
-        
+
         if (showOnlyAvailable) {
             candidates = filterCandidatesByAvailability(candidates, true);
         }
-        
+
         if (currentFilter !== 'all') {
             candidates = filterCandidatesByProfession(candidates, currentFilter);
         }
-        
+
         grid.innerHTML = renderCandidateCards(candidates, currentSession, db.matches);
         document.getElementById('results-count').textContent = candidates.length;
         document.getElementById('view-title').textContent = 'Candidates';
-    } else {
+    } else if (currentView === 'offers') {
         const activeOffers = db.jobOffers.filter(o => o.isActive);
-        grid.innerHTML = renderJobOfferCardsFromShow(activeOffers, db.companies, currentSession);
+        grid.innerHTML = renderJobOfferCards(activeOffers, db.companies, currentSession);
         document.getElementById('results-count').textContent = activeOffers.length;
         document.getElementById('view-title').textContent = 'Job Offers';
+    } else if (currentView === 'matches') {
+        // Show candidates that have matches with current company
+        const myMatches = db.matches.filter(m => m.companyId === currentSession.companyId);
+        const matchedCandidateIds = myMatches.map(m => m.candidateId);
+        const matchedCandidates = db.candidates.filter(c => matchedCandidateIds.includes(c.id));
+
+        grid.innerHTML = renderCandidateCards(matchedCandidates, currentSession, db.matches);
+        document.getElementById('results-count').textContent = matchedCandidates.length;
+        document.getElementById('view-title').textContent = 'My Matches';
     }
-    
+
     // Add animation to cards
     setTimeout(() => {
         document.querySelectorAll('.card').forEach((card, index) => {
@@ -66,6 +74,8 @@ function updateUI() {
             }, index * 50);
         });
     }, 10);
+
+    updateFilterSummary();
 }
 
 // Populate profession filter
@@ -90,7 +100,9 @@ function populateProfessionFilter() {
 // Update filter summary
 function updateFilterSummary() {
     const summary = document.getElementById('filter-summary');
-    if (currentFilter === 'all') {
+    if (currentView === 'matches') {
+        summary.textContent = 'Matched candidates';
+    } else if (currentFilter === 'all') {
         summary.textContent = showOnlyAvailable ? 'Available candidates' : 'All candidates';
     } else {
         summary.textContent = currentFilter;
@@ -114,6 +126,59 @@ window.toggleView = function() {
     updateUI();
 };
 
+// Setup navigation and header button events
+function setupNavigationEvents() {
+    // Sidebar nav items (simple text-based routing)
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const text = item.textContent || '';
+            if (text.includes('Matches') || text.includes('My Matches')) {
+                currentView = 'matches';
+            } else if (text.includes('Job') || text.includes('Job Boards')) {
+                currentView = 'offers';
+            } else {
+                currentView = 'candidates';
+            }
+            // update UI and stats after navigation
+            updateUI();
+            updateStats();
+        });
+    });
+
+    // Reload data button
+    const reloadBtn = document.querySelector('.btn-save');
+    if (reloadBtn) {
+        reloadBtn.addEventListener('click', async () => {
+            try {
+                db = await loadDatabase('./db.json');
+                // refresh UI
+                populateProfessionFilter();
+                updateUI();
+                updateStats();
+                showToast('Reloaded', 'Database reloaded');
+            } catch (err) {
+                console.error('Reload error', err);
+                showToast('Error', 'Failed to reload database', 'error');
+            }
+        });
+    }
+}
+
+// Reset filters helper (referenced from some templates)
+window.resetFilters = function() {
+    currentFilter = 'all';
+    showOnlyAvailable = false;
+    const availText = document.getElementById('availability-text');
+    if (availText) availText.textContent = 'Open to Work Only';
+    const select = document.getElementById('job-filter');
+    if (select) select.value = 'all';
+    updateUI();
+};
+
+// Placeholder for load-more action
+window.loadMoreCandidates = function() {
+    showToast('Not implemented', 'Load more is not implemented in this demo', 'info');
+};
 // Update stats
 function updateStats() {
     const myMatches = db.matches.filter(m => m.companyId === currentSession.companyId);

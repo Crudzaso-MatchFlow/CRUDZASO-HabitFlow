@@ -68,7 +68,7 @@ export function renderCandidateCard(candidate, session, matches = []) {
             <div class="card-body">
                 <div class="card-header">
                     <div class="avatar-placeholder">
-                        <span class="material-symbols-outlined">person</span>
+                        ${candidate.avatar ? `<div class="avatar-image" style="background-image: url('${escapeHtml(candidate.avatar)}')"></div>` : `<span class="material-symbols-outlined">person</span>`}
                     </div>
                     <div class="card-meta">
                         <span class="${statusClass}">
@@ -157,7 +157,7 @@ export function renderJobOfferCard(offer, company, isOwner = false) {
             <div class="card-body">
                 <div class="card-header">
                     <div class="company-logo">
-                        <span class="material-symbols-outlined">business</span>
+                        ${company && company.logo ? `<div class="company-logo-image" style="background-image: url('${escapeHtml(company.logo)}')"></div>` : `<span class="material-symbols-outlined">business</span>`}
                     </div>
                     <div class="card-meta">
                         <span class="${offer.isActive ? 'status-active' : 'status-inactive'}">
