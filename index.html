@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>MatchFlow - Unified Dashboard (Filtered Discovery)</title>
+    <title>MatchFlow - Candidates Discovery</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="matchflow-additional.css">
 </head>
 <body>
     <div class="container">
@@ -32,16 +33,16 @@
                 <div class="nav-item">
                     <span class="material-symbols-outlined">favorite</span>
                     <p>My Matches</p>
+                    <span class="badge" id="matches-count">0</span>
                 </div>
                 <div class="nav-item">
                     <span class="material-symbols-outlined">bookmark</span>
                     <p>Reserved</p>
-                    <span class="badge">4</span>
+                    <span class="badge" id="reserved-count">0</span>
                 </div>
                 <div class="nav-item">
                     <span class="material-symbols-outlined">chat_bubble</span>
                     <p>Messages</p>
-                    <span class="notification-dot"></span>
                 </div>
 
                 <div class="nav-divider">
@@ -69,7 +70,7 @@
                 <div class="profile-card">
                     <div class="profile-avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDC0X310LWC9ofNZf4vbQQHCBjaEgpddH4dVfeFwrByu_4yocJ7pNlBlu26i0I7yCRECILkNT70LdA8dbDlaS2dmZvckm45YlI4ZwW9Sd-v-KKMveZEDS3wUoNhqK4jkwLB6ZLqzTRZOAXEh8jtscLUA7y2AuKd2Q2oed0ScLo-gBjvBRcJJWzlJ9G7lTV55nuvfSkV95MQq-np6pRtZsnqnZ5qGehgRT0BIVmudJRuDl7xPoQNu-7OPZQLevkIvCbJkMonXnaW5uo');"></div>
                     <div class="profile-info">
-                        <p class="profile-name">Acme Corp</p>
+                        <p class="profile-name" id="company-name">TechCorp Solutions</p>
                         <p class="profile-plan">Enterprise Plan</p>
                     </div>
                     <button class="profile-menu">
@@ -89,25 +90,22 @@
                         <div class="job-selector">
                             <div class="select-wrapper">
                                 <span class="material-symbols-outlined select-icon">work</span>
-                                <select class="job-select">
-                                    <option>Active Jobs</option>
-                                    <option selected>Senior React Dev</option>
-                                    <option>Product Designer</option>
-                                    <option>DevOps Lead</option>
+                                <select class="job-select" id="job-filter">
+                                    <option value="all">All Professions</option>
                                 </select>
                                 <span class="material-symbols-outlined select-arrow">expand_more</span>
                             </div>
                             <div class="divider"></div>
                             <div class="tech-tags">
-                                <span class="material-symbols-outlined">psychology</span>
-                                <span>React, Node.js, TS</span>
+                                <span class="material-symbols-outlined">filter_list</span>
+                                <span id="filter-summary">All candidates</span>
                             </div>
                         </div>
                     </div>
                     <div class="header-right">
-                        <button class="btn-new-search">
-                            <span class="material-symbols-outlined">add</span>
-                            New Search
+                        <button class="btn-new-search" onclick="toggleView()">
+                            <span class="material-symbols-outlined">swap_horiz</span>
+                            <span id="view-toggle-text">View Job Offers</span>
                         </button>
                         <div class="divider"></div>
                         <button class="btn-notification">
@@ -125,140 +123,68 @@
                         <div class="status-bar">
                             <span class="status-badge">Search Active</span>
                             <span class="dot">•</span>
-                            <span class="status-text">Last updated 2m ago</span>
+                            <span class="status-text">Last updated <span id="update-time">now</span></span>
                         </div>
-                        <h3 class="page-title">Senior React Dev <span>Candidates</span></h3>
-                        <p class="page-subtitle">Showing 14 matches out of 1,280 total candidates</p>
+                        <h3 class="page-title">
+                            <span id="view-title">Candidates</span> 
+                            <span id="profession-title">Discovery</span>
+                        </h3>
+                        <p class="page-subtitle">
+                            Showing <span id="results-count">0</span> results
+                        </p>
                     </div>
                     <div class="header-actions">
-                        <button class="btn-filter">
+                        <button class="btn-filter" onclick="toggleAvailability()">
                             <span class="material-symbols-outlined">tune</span>
-                            Advanced Filters
+                            <span id="availability-text">Open to Work Only</span>
                         </button>
                         <button class="btn-save">
-                            <span class="material-symbols-outlined">save</span>
-                            Save Search
+                            <span class="material-symbols-outlined">refresh</span>
+                            Reload Data
                         </button>
                     </div>
                 </div>
 
+                <!-- Filter Pills -->
+                <div class="filter-pills" id="profession-filters" style="display: none;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+
+                <!-- Cards Container -->
                 <div class="cards-container">
-                    <div class="cards-grid">
-                        <!-- Card 1 -->
-                        <article class="card">
-                            <div class="card-body">
-                                <div class="card-header">
-                                    <div class="avatar-placeholder">
-                                        <span class="material-symbols-outlined">person_off</span>
-                                    </div>
-                                    <div class="card-meta">
-                                        <span class="status-open">
-                                            <span class="pulse-dot"></span>
-                                            Open to work
-                                        </span>
-                                        <span class="time-ago">
-                                            <span class="material-symbols-outlined">schedule</span>
-                                            2h ago
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="card-info">
-                                    <h4 class="card-title">Senior React Dev</h4>
-                                    <p class="card-location">
-                                        <span class="material-symbols-outlined">location_on</span>
-                                        San Francisco • $160k - $210k
-                                    </p>
-                                </div>
-                                <div class="tags">
-                                    <span class="tag">React</span>
-                                    <span class="tag">TypeScript</span>
-                                    <span class="tag">Next.js</span>
-                                    <span class="tag">+4</span>
-                                </div>
-                                <div class="card-privacy">
-                                    <span class="material-symbols-outlined">lock</span>
-                                    Profile details hidden until match request
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn-match">
-                                    <span class="material-symbols-outlined">verified</span>
-                                    Match Request
-                                </button>
-                                <button class="btn-bookmark">
-                                    <span class="material-symbols-outlined">bookmark</span>
-                                </button>
-                            </div>
-                        </article>
-
-                        <!-- Card 2 -->
-                        <article class="card">
-                            <div class="card-body">
-                                <div class="card-header">
-                                    <div class="avatar-placeholder">
-                                        <span class="material-symbols-outlined">person_off</span>
-                                    </div>
-                                    <div class="card-meta">
-                                        <span class="status-open">
-                                            <span class="pulse-dot-static"></span>
-                                            Open to work
-                                        </span>
-                                        <span class="time-ago">
-                                            <span class="material-symbols-outlined">schedule</span>
-                                            4h ago
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="card-info">
-                                    <h4 class="card-title">Lead Frontend Architect</h4>
-                                    <p class="card-location">
-                                        <span class="material-symbols-outlined">location_on</span>
-                                        Remote • $180k - $230k
-                                    </p>
-                                </div>
-                                <div class="tags">
-                                    <span class="tag">React</span>
-                                    <span class="tag">Redux</span>
-                                    <span class="tag">GraphQL</span>
-                                </div>
-                                <div class="card-privacy">
-                                    <span class="material-symbols-outlined">lock</span>
-                                    Profile details hidden until match request
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn-match">
-                                    <span class="material-symbols-outlined">verified</span>
-                                    Match Request
-                                </button>
-                                <button class="btn-bookmark">
-                                    <span class="material-symbols-outlined">bookmark</span>
-                                </button>
-                            </div>
-                        </article>
-
-                        <!-- Empty Card -->
-                        <article class="card-empty">
-                            <div class="empty-icon">
-                                <span class="material-symbols-outlined">magic_button</span>
-                            </div>
-                            <h4 class="empty-title">Refine Search</h4>
-                            <p class="empty-text">Want more precise results? Add secondary skills or seniority level.</p>
-                            <button class="btn-refine">Add Parameters</button>
-                        </article>
+                    <div class="cards-grid" id="cards-grid">
+                        <!-- Cards will be loaded here by JavaScript -->
+                        <div class="skeleton-card">
+                            <div class="loading-skeleton skeleton-avatar"></div>
+                            <div class="loading-skeleton skeleton-title"></div>
+                            <div class="loading-skeleton skeleton-text"></div>
+                            <div class="loading-skeleton skeleton-text short"></div>
+                        </div>
+                        <div class="skeleton-card">
+                            <div class="loading-skeleton skeleton-avatar"></div>
+                            <div class="loading-skeleton skeleton-title"></div>
+                            <div class="loading-skeleton skeleton-text"></div>
+                            <div class="loading-skeleton skeleton-text short"></div>
+                        </div>
+                        <div class="skeleton-card">
+                            <div class="loading-skeleton skeleton-avatar"></div>
+                            <div class="loading-skeleton skeleton-title"></div>
+                            <div class="loading-skeleton skeleton-text"></div>
+                            <div class="loading-skeleton skeleton-text short"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="load-more-container">
-                    <button class="btn-load-more">
-                        <span>Load more candidates</span>
+                <div class="load-more-container" id="load-more-container" style="display: none;">
+                    <button class="btn-load-more" onclick="loadMoreCandidates()">
+                        <span>Load more results</span>
                         <span class="material-symbols-outlined">expand_more</span>
                     </button>
                 </div>
             </div>
 
-            
-        </main>
-    </div>
+
+    <!-- JavaScript -->
+    <script type="module" src="app.js"></script>
 </body>
 </html>
