@@ -14,15 +14,15 @@
                     <div class="card">
                         <div class="card-body">
                             <form id="formCreateOffer">
-                                <div class="mb-3">
+                                <div class="mb-4">
                                     <label for="titleOffer" class="form-label">Título de la Oferta</label>
                                     <input type="text" class="form-control" id="titleOffer" placeholder="Example: Software Developer" required>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-4">
                                     <label for="descriptionOffer" class="form-label">Descripción del Cargo</label>
                                     <textarea class="form-control" id="descriptionOffer" rows="3"></textarea>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-4 d-flex gap-4">
                                     <label for="professionOffer" class="form-label">Profesión</label>
                                     <select class="form-select" aria-label="Default select example" id="professionOffer">
                                         <option selected>Seleccione Profesión</option>
@@ -32,8 +32,6 @@
                                         <option value="programador">Programador</option>
                                         <option value="médico">Médico</option>
                                     </select>
-                                </div>
-                                <div class="mb-3">
                                     <label for="typeContract" class="form-label">Tipo de Contrato</label>
                                     <select class="form-select" aria-label="Default select example" id="typeContract">
                                         <option selected>Seleccione Tipo</option>
@@ -44,11 +42,9 @@
                                         <option value="ocasional">Ocasional, accidental o transitorio</option>
                                     </select>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-4 d-flex gap-4">
                                     <label for="locationOffer" class="form-label">Ubicación</label>
                                     <input type="text" class="form-control" id="locationOffer" placeholder="Example: Bogotá D.C." required>
-                                </div>
-                                <div class="mb-3">
                                     <label for="modeOffer" class="form-label">Modalidad</label>
                                     <select class="form-select" aria-label="Default select example" id="modeOffer">
                                         <option selected>Presencial, Remoto o Híbrido</option>
@@ -57,15 +53,13 @@
                                         <option value="hibrido">Híbrido</option>
                                     </select>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-4 d-flex gap-4">
                                     <label for="salaryOffer" class="form-label">Salario</label>
                                     <input type="text" class="form-control" id="salaryOffer" placeholder="Example: $2.550.000" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="deadlineOffer" class="form-label">Fecha Límite de la Convocatoria</label>
+                                    <label for="deadlineOffer" class="form-label">Fecha Límite</label>
                                     <input type="date" class="form-control" id="deadlineOffer" required>
                                 </div>
-                                <div class="mb-3 d-flex justify-content-end">
+                                <div class="mb-4 d-flex justify-content-center gap-4">
                                     <button type="submit" class="btn btn-primary" id="submitBtn">Publicar Oferta</button>
                                     <button type="button" class="btn btn-secondary" id="cancelBtn">Cancelar</button>
                                 </div>
