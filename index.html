@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>MatchFlow - Candidates Discovery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="matchflow-additional.css">
+    <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='100%25' height='100%25' fill='%23137fec'/><text x='50%25' y='55%25' font-size='10' text-anchor='middle' fill='%23fff' font-family='Arial'>M</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined">all_inclusive</span>
+                </div>
+                <div>
+                    <h1 class="logo-title">MatchFlow</h1>
+                    <p class="logo-subtitle">Crudzaso Platform</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-item active">
+                    <span class="material-symbols-outlined filled">explore</span>
+                    <p>Discovery</p>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <p>My Matches</p>
+                    <span class="badge" id="matches-count">0</span>
+                </div>
+                <div class="nav-item">
+                    <span class="material-symbols-outlined">bookmark</span>
+                    <p>Reserved</p>
+                    <span class="badge" id="reserved-count">0</span>
+                </div>
+                
+
+                <div class="nav-bottom">
+                    <div class="nav-item">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p>Settings</p>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="profile-card" role="region" aria-label="User profile">
+                    <img id="user-avatar" class="profile-avatar" src="" alt="User avatar" width="40" height="40">
+                    <div class="profile-info">
+                        <p class="profile-name" id="user-name">Invitado</p>
+                        <p class="profile-plan" id="user-plan" style="display:none;"></p>
+                    </div>
+                    <button class="profile-menu" aria-label="User menu">
+                        <span class="material-symbols-outlined">more_vert</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h2 class="header-title-mobile">Discovery</h2>
+                        <div class="job-selector">
+                            <div class="select-wrapper">
+                                <span class="material-symbols-outlined select-icon">work</span>
+                                <select class="job-select" id="job-filter">
+                                    <option value="all">All Professions</option>
+                                </select>
+                                <span class="material-symbols-outlined select-arrow">expand_more</span>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="tech-tags">
+                                <span class="material-symbols-outlined">filter_list</span>
+                                <span id="filter-summary">All candidates</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <button class="btn-new-search" onclick="toggleView()">
+                            <span class="material-symbols-outlined">swap_horiz</span>
+                            <span id="view-toggle-text">View Job Offers</span>
+                        </button>
+                        <div class="divider"></div>
+                        <button class="btn-notification">
+                            <span class="material-symbols-outlined">notifications</span>
+                            <span class="notification-badge"></span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <div class="content-header">
+                    <div>
+                        <div class="status-bar">
+                            <span class="status-badge">Search Active</span>
+                            <span class="dot">•</span>
+                            <span class="status-text">Last updated <span id="update-time">now</span></span>
+                        </div>
+                        <h3 class="page-title">
+                            <span id="view-title">Candidates</span> 
+                            <span id="profession-title">Discovery</span>
+                        </h3>
+                        <p class="page-subtitle">
+                            Showing <span id="results-count">0</span> results
+                        </p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn-filter" onclick="toggleAvailability()">
+                            <span class="material-symbols-outlined">tune</span>
+                            <span id="availability-text">Open to Work Only</span>
+                        </button>
+                        <button class="btn-save">
+                            <span class="material-symbols-outlined">refresh</span>
+                            Reload Data
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Pills -->
+                <div class="filter-pills" id="profession-filters" style="display: none;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+
+                <!-- Cards Container -->
+                <div class="cards-container">
+                    <div class="cards-grid" id="cards-grid">
+                        <!-- Cards will be loaded here by JavaScript -->
+                        <div class="skeleton-card">
+                            <div class="loading-skeleton skeleton-avatar"></div>
+                            <div class="loading-skeleton skeleton-title"></div>
+                            <div class="loading-skeleton skeleton-text"></div>
+                            <div class="loading-skeleton skeleton-text short"></div>
+                        </div>
+                        <div class="skeleton-card">
+                            <div class="loading-skeleton skeleton-avatar"></div>
+                            <div class="loading-skeleton skeleton-title"></div>
+                            <div class="loading-skeleton skeleton-text"></div>
+                            <div class="loading-skeleton skeleton-text short"></div>
+                        </div>
+                        <div class="skeleton-card">
+                            <div class="loading-skeleton skeleton-avatar"></div>
+                            <div class="loading-skeleton skeleton-title"></div>
+                            <div class="loading-skeleton skeleton-text"></div>
+                            <div class="loading-skeleton skeleton-text short"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="load-more-container" id="load-more-container" style="display: none;">
+                    <button class="btn-load-more" onclick="loadMoreCandidates()">
+                        <span>Load more results</span>
+                        <span class="material-symbols-outlined">expand_more</span>
+                    </button>
+                </div>
+            </div>
+
+
+    <!-- Small script: populate profile from localStorage if available -->
+    <script>
+        const PLACEHOLDER_AVATAR = 'https://via.placeholder.com/48?text=%3F';
+
+        function populateUserProfile(){
+            const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            const avatar = document.getElementById('user-avatar');
+            const name = document.getElementById('user-name');
+            const plan = document.getElementById('user-plan');
+            if(user){
+                avatar.src = user.avatar || PLACEHOLDER_AVATAR;
+                name.textContent = user.name || 'Usuario';
+                if(user.plan){ plan.textContent = user.plan; plan.style.display = 'block'; }
+            } else {
+                avatar.src = PLACEHOLDER_AVATAR;
+                name.textContent = 'Invitado';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', populateUserProfile);
+    </script>
+
+    <!-- JavaScript -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
