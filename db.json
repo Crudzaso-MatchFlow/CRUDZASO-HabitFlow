@@ -1,0 +1,249 @@
+{
+  "candidates": [
+    {
+      "id": 1,
+      "username": "mariagarcia",
+      "password": "password123",
+      "rol": "candidate",
+      "name": "María García",
+      "email": "maria.garcia@email.com",
+      "phone": "+57 300 123 4567",
+      "avatar": "https://i.pravatar.cc/150?img=1",
+      "profession": "Desarrollador Frontend",
+      "openToWork": true,
+      "bio": "Desarrolladora frontend con pasión por crear interfaces de usuario intuitivas y accesibles. Experiencia en React y Vue.",
+      "reservedBy": null,
+      "reservedForOffer": null
+    },
+    {
+      "id": 2,
+      "username": "carlosr",
+      "password": "password123",
+      "rol": "candidate",
+      "name": "Carlos Rodríguez",
+      "email": "carlos.rodriguez@email.com",
+      "phone": "+57 301 234 5678",
+      "avatar": "https://i.pravatar.cc/150?img=12",
+      "profession": "Desarrollador Backend",
+      "openToWork": true,
+      "bio": "Especialista en arquitecturas escalables y APIs RESTful. Trabajo con Node.js y Python.",
+      "reservedBy": null,
+      "reservedForOffer": null
+    },
+    {
+      "id": 3,
+      "username": "anamartinez",
+      "password": "password123",
+      "rol": "candidate",
+      "name": "Ana Martínez",
+      "email": "ana.martinez@email.com",
+      "phone": "+57 302 345 6789",
+      "avatar": "https://i.pravatar.cc/150?img=5",
+      "profession": "Diseñador UX/UI",
+      "openToWork": false,
+      "bio": "Diseñadora centrada en el usuario con enfoque en investigación y prototipado.",
+      "reservedBy": null,
+      "reservedForOffer": null
+    },
+    {
+      "id": 4,
+      "username": "luish",
+      "password": "password123",
+      "rol": "candidate",
+      "name": "Luis Hernández",
+      "email": "luis.hernandez@email.com",
+      "phone": "+57 303 456 7890",
+      "avatar": "https://i.pravatar.cc/150?img=13",
+      "profession": "Desarrollador Full Stack",
+      "openToWork": true,
+      "bio": "Full Stack developer con experiencia en MERN stack y desarrollo ágil.",
+      "reservedBy": 1,
+      "reservedForOffer": 2
+    },
+    {
+      "id": 5,
+      "username": "sandralopez",
+      "password": "password123",
+      "rol": "candidate",
+      "name": "Sandra López",
+      "email": "sandra.lopez@email.com",
+      "phone": "+57 304 567 8901",
+      "avatar": "https://i.pravatar.cc/150?img=9",
+      "profession": "Data Analyst",
+      "openToWork": true,
+      "bio": "Analista de datos con experiencia en SQL, Python y visualización de datos con Power BI.",
+      "reservedBy": null,
+      "reservedForOffer": null
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "username": "techcorp",
+      "password": "company123",
+      "rol": "company",
+      "name": "TechCorp Solutions",
+      "email": "contact@techcorp.com",
+      "phone": "+57 601 234 5678",
+      "avatar": "https://ui-avatars.com/api/?name=TechCorp+Solutions&background=0D8ABC&color=fff&size=150",
+      "description": "Empresa líder en desarrollo de software empresarial y soluciones cloud.",
+      "industry": "Tecnología"
+    },
+    {
+      "id": 2,
+      "username": "innovadesign",
+      "password": "company123",
+      "rol": "company",
+      "name": "InnovaDesign Studio",
+      "email": "hello@innovadesign.com",
+      "phone": "+57 602 345 6789",
+      "avatar": "https://ui-avatars.com/api/?name=InnovaDesign+Studio&background=FF6B6B&color=fff&size=150",
+      "description": "Agencia creativa especializada en diseño digital y experiencia de usuario.",
+      "industry": "Diseño y Marketing"
+    },
+    {
+      "id": 3,
+      "username": "dataminds",
+      "password": "company123",
+      "rol": "company",
+      "name": "DataMinds Analytics",
+      "email": "info@dataminds.com",
+      "phone": "+57 603 456 7890",
+      "avatar": "https://ui-avatars.com/api/?name=DataMinds+Analytics&background=4ECDC4&color=fff&size=150",
+      "description": "Consultora especializada en análisis de datos y business intelligence.",
+      "industry": "Consultoría"
+    },
+    {
+      "id": 4,
+      "username": "startuphub",
+      "password": "company123",
+      "rol": "company",
+      "name": "StartupHub Medellín",
+      "email": "team@startuphub.co",
+      "phone": "+57 604 567 8901",
+      "avatar": "https://ui-avatars.com/api/?name=StartupHub+Medellin&background=F7B731&color=fff&size=150",
+      "description": "Aceleradora de startups tecnológicas enfocada en innovación.",
+      "industry": "Startups"
+    }
+  ],
+  "jobOffers": [
+    {
+      "id": 1,
+      "companyId": 1,
+      "title": "Desarrollador Frontend Senior",
+      "description": "Buscamos un desarrollador frontend con experiencia en React para liderar proyectos de aplicaciones web empresariales.",
+      "profession": "Desarrollador Frontend",
+      "typeContract": "indefinido",
+      "location": "Medellín",
+      "mode": "remoto",
+      "salary": "$2.550.000",
+      "deadline": "2026-02-15T23:59:59Z",
+      "createdAt": "2026-01-15T10:00:00Z",
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "companyId": 1,
+      "title": "Desarrollador Full Stack",
+      "description": "Únete a nuestro equipo para desarrollar soluciones completas usando tecnologías modernas.",
+      "profession": "Desarrollador Full Stack",
+      "typeContract": "indefinido",
+      "location": "Bogotá",
+      "mode": "híbrido",
+      "salary": "$3.200.000",
+      "deadline": "2026-02-20T23:59:59Z",
+      "createdAt": "2026-01-20T14:30:00Z",
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "companyId": 2,
+      "title": "Diseñador UX/UI Junior",
+      "description": "Buscamos diseñador creativo para trabajar en proyectos de branding y diseño digital.",
+      "profession": "Diseñador UX/UI",
+      "typeContract": "obra o labor",
+      "location": "Medellín",
+      "mode": "presencial",
+      "salary": "$2.100.000",
+      "deadline": "2026-02-10T23:59:59Z",
+      "createdAt": "2026-01-18T09:00:00Z",
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "companyId": 3,
+      "title": "Analista de Datos",
+      "description": "Analista para procesar grandes volúmenes de datos y generar insights de negocio.",
+      "profession": "Data Analyst",
+      "typeContract": "indefinido",
+      "location": "Cali",
+      "mode": "remoto",
+      "salary": "$2.800.000",
+      "deadline": "2026-02-25T23:59:59Z",
+      "createdAt": "2026-01-22T11:00:00Z",
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "companyId": 4,
+      "title": "Backend Developer",
+      "description": "Desarrollador backend para crear APIs y microservicios escalables.",
+      "profession": "Desarrollador Backend",
+      "typeContract": "prestación de servicios",
+      "location": "Medellín",
+      "mode": "híbrido",
+      "salary": "$3.500.000",
+      "deadline": "2026-02-28T23:59:59Z",
+      "createdAt": "2026-01-25T16:00:00Z",
+      "isActive": true
+    },
+    {
+      "id": 6,
+      "companyId": 2,
+      "title": "Senior UX Designer",
+      "description": "Diseñador UX senior para liderar proyectos de investigación y diseño centrado en el usuario.",
+      "profession": "Diseñador UX/UI",
+      "typeContract": "indefinido",
+      "location": "Bogotá",
+      "mode": "presencial",
+      "salary": "$4.000.000",
+      "deadline": "2026-01-20T23:59:59Z",
+      "createdAt": "2026-01-10T08:00:00Z",
+      "isActive": false
+    }
+  ],
+  "matches": [
+    {
+      "id": 1,
+      "companyId": 1,
+      "candidateId": 1,
+      "jobOfferId": 1,
+      "status": "interview",
+      "createdAt": "2026-01-26T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "companyId": 1,
+      "candidateId": 4,
+      "jobOfferId": 2,
+      "status": "contacted",
+      "createdAt": "2026-01-27T14:00:00Z"
+    },
+    {
+      "id": 3,
+      "companyId": 3,
+      "candidateId": 5,
+      "jobOfferId": 4,
+      "status": "pending",
+      "createdAt": "2026-01-28T09:15:00Z"
+    },
+    {
+      "id": 4,
+      "companyId": 4,
+      "candidateId": 2,
+      "jobOfferId": 5,
+      "status": "contacted",
+      "createdAt": "2026-01-28T16:45:00Z"
+    }
+  ]
+}
