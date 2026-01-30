@@ -1,7 +1,7 @@
 {
   "candidates": [
     {
-      "id": 1,
+      "id": "1",
       "username": "mariagarcia",
       "password": "password123",
       "rol": "candidate",
@@ -16,7 +16,7 @@
       "reservedForOffer": null
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "carlosr",
       "password": "password123",
       "rol": "candidate",
@@ -31,7 +31,7 @@
       "reservedForOffer": null
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "anamartinez",
       "password": "password123",
       "rol": "candidate",
@@ -46,7 +46,7 @@
       "reservedForOffer": null
     },
     {
-      "id": 4,
+      "id": "4",
       "username": "luish",
       "password": "password123",
       "rol": "candidate",
@@ -61,7 +61,7 @@
       "reservedForOffer": 2
     },
     {
-      "id": 5,
+      "id": "5",
       "username": "sandralopez",
       "password": "password123",
       "rol": "candidate",
@@ -78,7 +78,7 @@
   ],
   "companies": [
     {
-      "id": 1,
+      "id": "1",
       "username": "techcorp",
       "password": "company123",
       "rol": "company",
@@ -90,7 +90,7 @@
       "industry": "Tecnología"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "innovadesign",
       "password": "company123",
       "rol": "company",
@@ -102,7 +102,7 @@
       "industry": "Diseño y Marketing"
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "dataminds",
       "password": "company123",
       "rol": "company",
@@ -114,7 +114,7 @@
       "industry": "Consultoría"
     },
     {
-      "id": 4,
+      "id": "4",
       "username": "startuphub",
       "password": "company123",
       "rol": "company",
@@ -128,7 +128,7 @@
   ],
   "jobOffers": [
     {
-      "id": 1,
+      "id": "1",
       "companyId": 1,
       "title": "Desarrollador Frontend Senior",
       "description": "Buscamos un desarrollador frontend con experiencia en React para liderar proyectos de aplicaciones web empresariales.",
@@ -142,7 +142,7 @@
       "isActive": true
     },
     {
-      "id": 2,
+      "id": "2",
       "companyId": 1,
       "title": "Desarrollador Full Stack",
       "description": "Únete a nuestro equipo para desarrollar soluciones completas usando tecnologías modernas.",
@@ -156,7 +156,7 @@
       "isActive": true
     },
     {
-      "id": 3,
+      "id": "3",
       "companyId": 2,
       "title": "Diseñador UX/UI Junior",
       "description": "Buscamos diseñador creativo para trabajar en proyectos de branding y diseño digital.",
@@ -170,7 +170,7 @@
       "isActive": true
     },
     {
-      "id": 4,
+      "id": "4",
       "companyId": 3,
       "title": "Analista de Datos",
       "description": "Analista para procesar grandes volúmenes de datos y generar insights de negocio.",
@@ -184,7 +184,7 @@
       "isActive": true
     },
     {
-      "id": 5,
+      "id": "5",
       "companyId": 4,
       "title": "Backend Developer",
       "description": "Desarrollador backend para crear APIs y microservicios escalables.",
@@ -198,7 +198,7 @@
       "isActive": true
     },
     {
-      "id": 6,
+      "id": "6",
       "companyId": 2,
       "title": "Senior UX Designer",
       "description": "Diseñador UX senior para liderar proyectos de investigación y diseño centrado en el usuario.",
@@ -210,11 +210,39 @@
       "deadline": "2026-01-20T23:59:59Z",
       "createdAt": "2026-01-10T08:00:00Z",
       "isActive": false
+    },
+    {
+      "id": "f91e",
+      "companyId": "",
+      "title": "Se busca abogado derecho laboral",
+      "description": "Importante empresa del sector tecnológico busca un abogado con 5 años de experiencia en derecho laboral para liderar el equipo de contrataciones.",
+      "profession": "abogado",
+      "typeContract": "Indefinido",
+      "location": "Medellín",
+      "mode": "presencial",
+      "salary": "$7.550.000",
+      "deadline": "2026-02-20",
+      "createdAt": "",
+      "isActive": true
+    },
+    {
+      "id": "e316",
+      "companyId": "",
+      "title": "Constructor",
+      "description": "Experto en construir edificios bien chimbas.",
+      "profession": "arquitecto",
+      "typeContract": "obralabor",
+      "location": "Envigado",
+      "mode": "presencial",
+      "salary": "$3.200.000",
+      "deadline": "2026-03-10",
+      "createdAt": "2026-01-30T22:35:09.634Z",
+      "isActive": true
     }
   ],
   "matches": [
     {
-      "id": 1,
+      "id": "1",
       "companyId": 1,
       "candidateId": 1,
       "jobOfferId": 1,
@@ -222,7 +250,7 @@
       "createdAt": "2026-01-26T10:30:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "companyId": 1,
       "candidateId": 4,
       "jobOfferId": 2,
@@ -230,7 +258,7 @@
       "createdAt": "2026-01-27T14:00:00Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "companyId": 3,
       "candidateId": 5,
       "jobOfferId": 4,
@@ -238,7 +266,7 @@
       "createdAt": "2026-01-28T09:15:00Z"
     },
     {
-      "id": 4,
+      "id": "4",
       "companyId": 4,
       "candidateId": 2,
       "jobOfferId": 5,
