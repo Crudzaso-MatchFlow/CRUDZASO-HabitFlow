@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Candidate Profile - MatchFlow</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/candidate.css" />
+  </head>
+  <body>
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="logo">
+        <i class="fas fa-handshake"></i>
+        <span>MatchFlow</span>
+        <span class="role-badge">Candidate</span>
+      </div>
+
+      <div class="top-actions">
+        <button class="icon-btn">
+          <i class="fas fa-bell"></i>
+          <span class="badge">0</span>
+        </button>
+        <div class="user-menu">
+          <img
+            src="https://ui-avatars.com/api/?name=&background=10b981&color=fff"
+            alt="Candidate"
+          />
+          <span>Your name</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- LAYOUT PRINCIPAL -->
+    <div class="layout-candidate">
+      <!-- SIDEBAR -->
+      <aside class="candidate-sidebar">
+        <div class="sidebar-pin">
+          <a href="#" class="nav-item active">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-heart"></i>
+            <span>Matches <span class="count">0</span></span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-briefcase"></i>
+            <span>Applications <span class="count">0</span></span>
+          </a>
+          <a href="#" class="nav-item">
+            <i class="fas fa-envelope"></i>
+            <span>Mesagges <span class="count">0</span></span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content">
+        <!-- HERO CON INFO PERSONAL Y STATUS -->
+
+        <section class="profile-hero">
+          <div class="profile-avatar">
+            <img
+              id="profileAvatar"
+              src="https://ui-avatars.com/api/?name=&background=10b981&color=fff"
+              alt="Profile"
+            />
+            <div class="avatar-overlay" id="avatarEdit">
+              <i class="fas fa-camera"></i>
+              <input
+                type="file"
+                id="photoInput"
+                accept="image/*"
+                class="photo-input-hidden"
+              />
+            </div>
+          </div>
+
+          <div>
+            <div class="profile-main-info">
+              <h1 id="profileName">Your full name</h1>
+              <p id="profileTitle" class="profile-subtitle">Your profession</p>
+              <div class="profile-badges">
+                <span id="profileExperience" class="badge-info"
+                  >0 years of experience</span
+                >
+                <span id="profileLocation" class="badge-info"
+                  >Your location</span
+                >
+              </div>
+
+              <!-- CONTACTOS - NUEVA SECCIÓN -->
+              <div class="profile-contacts hidden" id="profileContacts">
+                <div class="contact-item">
+                  <i class="fas fa-phone contact-icon-phone"></i>
+                  <span id="profilePhone">+57 ...</span>
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-envelope contact-icon-email"></i>
+                  <span id="profileEmail">email@dominio.com</span>
+                </div>
+              </div>
+
+              <div class="profile-hero-footer">
+                <label class="status-toggle" id="statusToggle">
+                  <input
+                    type="checkbox"
+                    class="status-checkbox"
+                    id="openToWorkToggle"
+                  />
+                  <div>
+                    <span class="status-text" id="statusText"
+                      >Open to work</span
+                    >
+                  </div>
+                </label>
+
+                <div class="profile-actions">
+                  <button class="hero-btn primary" id="editProfileBtn">
+                    <i class="fas fa-edit"></i>
+                    Edit profile
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cards de otras secciones -->
+        <div class="content-grid">
+          <!-- EXPERIENCIA -->
+          <div class="card">
+            <div class="card-header">
+              <h2><i class="fas fa-building"></i>Work experience</h2>
+              <button class="edit-trigger" data-section="experience">
+                <i class="fas fa-edit"></i> Edit
+              </button>
+            </div>
+            <div
+              class="card-body experience-section empty-state"
+              id="experienceSection"
+            >
+              <i class="fas fa-briefcase"></i>
+              <p>Add your detailed professional experience</p>
+            </div>
+          </div>
+
+          <!-- SKILLS Y LANGUAGES -->
+          <div class="skills-languages-grid">
+            <div class="card">
+              <div class="card-header">
+                <h2><i class="fas fa-code"></i> Skills</h2>
+                <button class="edit-trigger" data-section="skills">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
+              </div>
+              <div
+                class="card-body skills-section empty-state"
+                id="skillsSection"
+              >
+                <i class="fas fa-plus"></i>
+                <p>Add your technical skills</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2><i class="fas fa-language"></i> Languages</h2>
+                <button class="edit-trigger" data-section="languages">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
+              </div>
+              <div
+                class="card-body languages-section empty-state"
+                id="languagesSection"
+              >
+                <i class="fas fa-globe"></i>
+                <p>Add languages you speak</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- MODAL EDITAR PERFIL -->
+    <div class="modal-overlay" id="profileModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Edit personal information</h2>
+          <button class="modal-close" id="closeModal">&times;</button>
+        </div>
+
+        <form id="profileForm">
+          <div class="input-group">
+            <label for="modalName">Full name</label>
+            <input type="text" id="modalName" required />
+          </div>
+
+          <div class="input-group">
+            <label for="modalProfession">Occupation/Title</label>
+            <input
+              type="text"
+              id="modalProfession"
+              placeholder="Ej: Desarrollador Frontend"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="modalExperience">Years of experience</label>
+            <input
+              type="number"
+              id="modalExperience"
+              min="0"
+              max="50"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="modalLocation">Location</label>
+            <input
+              type="text"
+              id="modalLocation"
+              placeholder="Ej: Medellín, Colombia"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="modalPhone">Phone</label>
+            <input type="tel" id="modalPhone" />
+          </div>
+
+          <div class="input-group">
+            <label for="modalEmail">Email</label>
+            <input type="email" id="modalEmail" required />
+          </div>
+        </form>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="cancelBtn">
+            Cancel
+          </button>
+          <button type="button" class="btn-save" id="saveProfileBtn">
+            Save change
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/candidate.js"></script>
+  </body>
+</html>
