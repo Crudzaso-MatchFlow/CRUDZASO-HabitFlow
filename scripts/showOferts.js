@@ -1,5 +1,5 @@
 // 4 functions only - brute force rendering
-export async function loadDb(){ return await fetch('./db.json').then(r => r.json()); }
+export async function loadDb(){ return await fetch('../db.json').then(r => r.json()); }
 
 export function renderCandidates(list){
   return list.map(c => `<article class="card candidate-card"><div class="card-body"><img src="${c.avatar||'https://via.placeholder.com/48?text=%3F'}" width="48" height="48" class="avatar"><div class="info"><h4>${c.name}</h4><p>${c.profession} • ${c.openToWork?'Open':'Busy'}</p></div></div><div class="card-footer"><button class="btn">Match</button></div></article>`).join('');
