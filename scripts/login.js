@@ -4,6 +4,10 @@
 let usersJSON = [];
 let currentUserJSON = null;
 
+// ================================
+// INITIALIZE ON DOM READY
+// ================================
+document.addEventListener('DOMContentLoaded', () => {
 
 // ================================
 // SIGN UP FORM HANDLER
@@ -110,14 +114,13 @@ if (loginForm) {
     });
 }
 
+}); // Fin DOMContentLoaded
 
 // ================================
 // SESSION HANDLER (indexTask.html)
 // ================================
 
 document.addEventListener('DOMContentLoaded', () => {
-
-
     // Ahora: variable en memoria
     if (!currentUserJSON) return;
 
