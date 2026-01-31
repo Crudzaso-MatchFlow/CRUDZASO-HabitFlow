@@ -1,13 +1,26 @@
 // ================================
-// DATA (ONLY JSON IN MEMORY)
+// DATA - LOAD FROM DB
 // ================================
 let usersJSON = [];
 let currentUserJSON = null;
 
+// Load users from db.json on startup
+async function loadUsers() {
+    try {
+        const response = await fetch('../db/db.json');
+        const data = await response.json();
+        usersJSON = data.candidates || [];
+    } catch (error) {
+        console.error('Error loading users:', error);
+        usersJSON = [];
+    }
+}
+
 // ================================
 // INITIALIZE ON DOM READY
 // ================================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadUsers();
 
 // ================================
 // SIGN UP FORM HANDLER
@@ -55,29 +68,62 @@ if (signupForm) {
             return;
         }
 
-        // Ahora buscamos en la variable JSON
+        // Check if email already exists
         if (usersJSON.find(user => user.email === email)) {
             signupError.textContent = 'Email already registered';
             signupError.classList.remove('d-none');
             return;
         }
 
-        const newUser = { name, email, password };
+        // Create new user object with full candidate structure
+        const newId = usersJSON.length > 0 ? Math.max(...usersJSON.map(u => u.id)) + 1 : 1;
+        const newUser = {
+            id: newId,
+            username: email.split('@')[0],
+            password: password,
+            rol: 'candidate',
+            name: name,
+            email: email,
+            phone: '',
+            avatar: `https://i.pravatar.cc/150?img=${newId}`,
+            profession: '',
+            openToWork: true,
+            bio: '',
+            reservedBy: null,
+            reservedForOffer: null
+        };
 
-        // Guardamos en el JSON en memoria
-        usersJSON.push(newUser);
+        // Save to db.json
+        try {
+            usersJSON.push(newUser);
+            
+            // Update db.json on server
+            const dbData = {
+                ...await (await fetch('../db/db.json')).json(),
+                candidates: usersJSON
+            };
+            
+            // Note: Direct db.json modification requires backend support
+            // For now, we save in memory and localStorage as backup
+            localStorage.setItem('users', JSON.stringify(usersJSON));
+            
+            signupSuccess.classList.remove('d-none');
+            signupForm.reset();
 
-        signupSuccess.classList.remove('d-none');
-        signupForm.reset();
-
-        setTimeout(() => {
-            const loginTabTrigger = document.getElementById('login-tab');
-            if (loginTabTrigger) {
-                new bootstrap.Tab(loginTabTrigger).show();
-                document.getElementById('login-email').value = email;
-            }
-            signupSuccess.classList.add('d-none');
-        }, 1500);
+            setTimeout(() => {
+                const loginTabTrigger = document.getElementById('login-tab');
+                if (loginTabTrigger) {
+                    new bootstrap.Tab(loginTabTrigger).show();
+                    const loginEmail = document.getElementById('login-email');
+                    if (loginEmail) loginEmail.value = email;
+                }
+                signupSuccess.classList.add('d-none');
+            }, 1500);
+        } catch (error) {
+            console.error('Error saving user:', error);
+            signupError.textContent = 'Error registering user';
+            signupError.classList.remove('d-none');
+        }
     });
 }
 
