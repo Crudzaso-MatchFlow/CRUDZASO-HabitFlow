@@ -22,10 +22,17 @@ if (signupForm) {
     signupForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const name = document.getElementById('signup-name').value.trim();
-        const email = document.getElementById('signup-email').value.trim().toLowerCase();
-        const password = document.getElementById('signup-password').value;
-        const confirmPassword = document.getElementById('signup-confirm').value;
+        const nameEl = document.getElementById('signup-name');
+        const emailEl = document.getElementById('signup-email');
+        const passwordEl = document.getElementById('signup-password');
+        const confirmEl = document.getElementById('signup-confirm');
+
+        if (!nameEl || !emailEl || !passwordEl || !confirmEl) return;
+
+        const name = nameEl.value.trim();
+        const email = emailEl.value.trim().toLowerCase();
+        const password = passwordEl.value;
+        const confirmPassword = confirmEl.value;
 
         signupError.classList.add('d-none');
         signupSuccess.classList.add('d-none');
@@ -87,8 +94,13 @@ if (loginForm) {
     loginForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const email = document.getElementById('login-email').value.trim().toLowerCase();
-        const password = document.getElementById('login-password').value;
+        const emailEl = document.getElementById('login-email');
+        const passwordEl = document.getElementById('login-password');
+
+        if (!emailEl || !passwordEl) return;
+
+        const email = emailEl.value.trim().toLowerCase();
+        const password = passwordEl.value;
 
         loginError.classList.add('d-none');
 
