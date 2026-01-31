@@ -196,7 +196,7 @@ html.dark .toast-notification { background:var(--primary); }
 /* Candidate card additions */
 .candidate-bio { margin-bottom:16px; padding-top:12px; border-top:1px solid var(--s100); }
 html.dark .candidate-bio { border-top-color:var(--s800); }
-.candidate-bio p { font-size:13px; color:var(--s600); line-height:1.6; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.candidate-bio p { font-size:13px; color:var(--s600); line-height:1.6; display:-webkit-box; -webkit-line-clamp:2; line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
 html.dark .candidate-bio p { color:var(--s400); }
 
 .candidate-contact-info { margin-top:16px; padding:12px; background:var(--s50); border-radius:var(--radius-sm); display:flex; flex-direction:column; gap:8px; }
@@ -217,7 +217,7 @@ button:disabled { opacity:0.5; cursor:not-allowed; }
 .job-offer-card .company-logo { width:56px; height:56px; flex-shrink:0; border-radius:var(--radius-lg); overflow:hidden; background:var(--primary); display:flex; align-items:center; justify-content:center; color:var(--white); font-size:28px; }
 
 .offer-description { margin-bottom:16px; padding-top:12px; }
-.offer-description p { font-size:13px; color:var(--s600); line-height:1.6; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.offer-description p { font-size:13px; color:var(--s600); line-height:1.6; display:-webkit-box; -webkit-line-clamp:2; line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
 html.dark .offer-description p { color:var(--s400); }
 
 .offer-actions { display:flex; gap:4px; margin-left:auto; }
